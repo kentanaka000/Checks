@@ -1,15 +1,18 @@
 package hackprinceton.checks;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Kentaro on 4/1/2017.
  */
 
 public class Header implements Item {
-    private final String         name;
+    private final String name;
 
     public Header(String name) {
         this.name = name;
@@ -29,11 +32,9 @@ public class Header implements Item {
         } else {
             view = convertView;
         }
-
         TextView text = (TextView) view.findViewById(R.id.separator);
         text.setText(name);
 
         return view;
     }
-
 }

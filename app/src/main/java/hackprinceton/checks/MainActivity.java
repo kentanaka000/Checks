@@ -2,15 +2,24 @@ package hackprinceton.checks;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.content.Intent;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends ListActivity {
 
+    public void redirect(View view)
+    {
+        Intent intent = new Intent(this, HeaderSettingsPage.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         List<Item> items = new ArrayList<Item>();
@@ -27,5 +36,6 @@ public class MainActivity extends ListActivity {
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
         setListAdapter(adapter);
+        }
     }
-}
+
