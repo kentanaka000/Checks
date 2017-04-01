@@ -27,7 +27,6 @@ public class ChecklistAdapter extends ArrayAdapter<Item>{
     @Override
     public int getViewTypeCount() {
         return RowType.values().length;
-
     }
 
     @Override

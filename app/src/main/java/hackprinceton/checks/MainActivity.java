@@ -1,9 +1,16 @@
 package hackprinceton.checks;
 
+import android.app.AlarmManager;
 import android.app.ListActivity;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends ListActivity {
@@ -27,5 +34,27 @@ public class MainActivity extends ListActivity {
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
         setListAdapter(adapter);
+
+
+        /*
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    GMailSender sender = new GMailSender("hackprinceton.checks@gmail.com",
+                            "Dellgrassland113");
+                    sender.sendMail("Hello from JavaMail", "Body from JavaMail",
+                            "hackprinceton.checks@gmail.com", "hackprincton.checks@gmail.com");
+                } catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
+                }
+            }
+
+        }).start();*/
+    }
+
+    public void onAddButtonClick(View v) {
+
     }
 }
