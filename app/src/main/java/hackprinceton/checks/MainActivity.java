@@ -1,5 +1,6 @@
 package hackprinceton.checks;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.ListActivity;
 import android.app.PendingIntent;
@@ -10,17 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
 
-    public void redirect(View view) {
-        Intent intent = new Intent(this, HeaderSettingsPage.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +26,15 @@ public class MainActivity extends ListActivity {
 
         setContentView(R.layout.activity_main);
 
+        ListView listView = (ListView) findViewById(R.id.list);
+
         List<Item> items = new ArrayList<Item>();
         items.add(new Header("Header 1"));
-        items.add(new ListItem("Text 1", "Rabble rabble"));
-        items.add(new ListItem("Text 2", "Rabble rabble"));
-        items.add(new ListItem("Text 3", "Rabble rabble"));
-        items.add(new ListItem("Text 4", "Rabble rabble"));
-        items.add(new NewTask("Add a new task!"));
+        items.add(new ListItem("Text 1"));
+        items.add(new NewTask());
         items.add(new Header("Header 2"));
-        items.add(new ListItem("Text 5", "Rabble rabble"));
-        items.add(new ListItem("Text 6", "Rabble rabble"));
-        items.add(new ListItem("Text 7", "Rabble rabble"));
-        items.add(new ListItem("Text 8", "Rabble rabble"));
-        items.add(new NewTask("Add a new task!"));
+        items.add(new ListItem("Text 5"));
+        items.add(new NewTask());
         
 
         ChecksDbHelper db = new ChecksDbHelper(this);
@@ -52,7 +46,7 @@ public class MainActivity extends ListActivity {
         }
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
-        setListAdapter(adapter);
+        listView.setAdapter(adapter);
 
 
         /*
