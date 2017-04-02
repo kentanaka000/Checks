@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -38,7 +39,6 @@ public class MainActivity extends Activity{
 
         ChecksDbHelper db = new ChecksDbHelper(this);
         List<HeaderRow> headers = db.getAllHeaders();
-
 
         for (int i = 0; i < headers.size(); i++) {
             items.add(new Header(headers.get(i).getName(), headers.get(i).getID()));
