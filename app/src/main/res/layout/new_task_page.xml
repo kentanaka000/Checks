@@ -31,18 +31,22 @@
 
     <Button
         android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_weight="0.00"
+        android:background="@drawable/plus_gradient"
+        android:textSize="20dp"
+        android:textColor="#EEFCFF"
         android:onClick="onSaveClick"
         android:text="@string/save" />
     <Button
         android:id="@+id/button_delete"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_weight="0.00"
+        android:background="@drawable/gradient_button2"
+        android:textSize="20dp"
+        android:textColor="#EEFCFF"
         android:onClick="onDeleteClick"
         android:text="@string/delete" />
 </LinearLayout>
