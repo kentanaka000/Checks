@@ -26,18 +26,16 @@ public class HeaderSettingsPage extends AppCompatActivity {
     EditText name;
     EditText email;
     Spinner staticSpinner;
+    boolean update;
+    HeaderRow header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.header_settings);
 
-
         name = (EditText) findViewById(R.id.group_name);
         email = (EditText) findViewById(R.id.email_addresses);
-
-        // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
 
         staticSpinner = (Spinner) findViewById(R.id.static_spinner);
         // Create an ArrayAdapter using the string array and a default spinner
@@ -50,20 +48,44 @@ public class HeaderSettingsPage extends AppCompatActivity {
         // Apply the adapter to the spinner
         staticSpinner.setAdapter(staticAdapter);
 
+
+        int headerID = getIntent().getIntExtra("HEADER_ID", -1);
+
+        if (headerID != -1) {
+            ChecksDbHelper db = new ChecksDbHelper(this);
+            header = db.getHeader(headerID);
+            name.setText(header.getName());
+            email.setText(header.getEmail());
+            staticSpinner.setSelection(header.getInterval());
+            update = true;
+        }
+        else update = false;
     };
 
     public void onSaveClick(View v) {
+        if (update) {
+            ChecksDbHelper db = new ChecksDbHelper(this);
+            header.setName(name.getText().toString());
+            header.setEmail(email.getText().toString());
+            header.setInterval(staticSpinner.getSelectedItemPosition());
+            db.updateHeader(header);
 
-        SharedPreferences prefs = this.getSharedPreferences(
-                "hackprinceton.checks", Context.MODE_PRIVATE);
-        int next = prefs.getInt(ID_PREF, 1000);
-        next++;
-        prefs.edit().putInt(ID_PREF, next).apply();
+        }
+        else {
+            SharedPreferences prefs = this.getSharedPreferences(
+                    "hackprinceton.checks", Context.MODE_PRIVATE);
+            int next = prefs.getInt(ID_PREF, 1000);
+            next++;
+            prefs.edit().putInt(ID_PREF, next).apply();
 
 
 
-        ChecksDbHelper db = new ChecksDbHelper(this);
-        db.addHeader(new HeaderRow(name.getText().toString(), email.getText().toString(), staticSpinner.getSelectedItemPosition(), next));
+            ChecksDbHelper db = new ChecksDbHelper(this);
+            db.addHeader(new HeaderRow(name.getText().toString(), email.getText().toString(), staticSpinner.getSelectedItemPosition(), next));
+
+        }
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
     }
 

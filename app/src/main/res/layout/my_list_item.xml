@@ -7,7 +7,9 @@
     <CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false" />
 
     <TextView
         android:id="@+id/list_content1"
@@ -24,19 +26,5 @@
         android:textSize="17dip"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/list_content2"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="5dip"
-        android:clickable="false"
-        android:gravity="center"
-        android:linksClickable="false"
-        android:longClickable="false"
-        android:paddingBottom="1dip"
-        android:paddingTop="1dip"
-        android:text="sample"
-        android:textColor="#6d6d6d"
-        android:textSize="17dip" />
 
 </LinearLayout>
