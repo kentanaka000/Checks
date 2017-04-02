@@ -1,3 +1,26 @@
 <resources>
+    <string-array name="updates_array">
+        <item>Every day</item>
+        <item>Every other day</item>
+        <item>Every three days</item>
+        <item>Every Monday</item>
+        <item>Every Tuesday</item>
+        <item>Every Wednesday</item>
+        <item>Every Thursday</item>
+        <item>Every Friday</item>
+        <item>Every Saturday</item>
+        <item>Every Sunday</item>
+        <item>Every 1st of the month</item>
+    </string-array>
     <string name="app_name">Checks</string>
+    <string name="settings">Settings</string>
+    <string name="emails">Emails</string>
+    <string name="phone_numbers">Phone Numbers</string>
+    <string name="notifications">Notifications?</string>
+    <string name="button_send">Send</string>
+    <string name="edit_header">Edit</string>
+    <string name="save">Save</string>
+    <string name="updates">Send updates:</string>
+    <string name="email_addresses">Email addresses to send to:</string>
+    <string name="group">Name of group:</string>
 </resources>

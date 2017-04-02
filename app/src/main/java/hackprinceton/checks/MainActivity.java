@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.content.Intent;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,9 +17,16 @@ import java.util.List;
 
 public class MainActivity extends ListActivity {
 
+    public void redirect(View view)
+    {
+        Intent intent = new Intent(this, HeaderSettingsPage.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         List<Item> items = new ArrayList<Item>();
@@ -58,3 +67,5 @@ public class MainActivity extends ListActivity {
 
     }
 }
+        }
+    }
