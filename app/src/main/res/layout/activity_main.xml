@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hackprinceton.checks.MainActivity">
-
+    tools:context="hackprinceton.checks.MainActivity"
+    android:background="#EEFCFF">
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
@@ -13,11 +13,14 @@
 
     <Button
         android:id="@+id/add_button"
+        android:background="@drawable/plus_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:textSize="40dp"
         android:text="+"
+        android:textColor="#EEFCFF"
         android:onClick="onAddButtonClick"/>
 
 </RelativeLayout>
