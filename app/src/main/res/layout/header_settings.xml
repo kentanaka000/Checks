@@ -69,24 +69,22 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.00"
         android:onClick="onSaveClick"
         android:text="@string/save"
         android:background="@drawable/plus_gradient"
         android:textSize="20dp"
-        android:textColor="#F000"
+        android:textColor="#EEFCFF"
         />
 
     <Button
         android:id="@+id/button_delete"
-        android:background="@drawable/plus_gradient"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/gradient_button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.01"
         android:onClick="onDeleteClick"
         android:text="@string/delete"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="#F000"
+        android:textColor="#EEFCFF"
         />
 </LinearLayout>

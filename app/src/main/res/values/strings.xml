@@ -14,8 +14,8 @@
     <string name="edit_header">Edit</string>
     <string name="save">Save</string>
     <string name="updates">Send updates:</string>
-    <string name="email_addresses">Email addresses to send to:</string>
-    <string name="group">Name of group:</string>
+    <string name="email_addresses">Email address to send to:</string>
+    <string name="group">Name of recipient:</string>
     <string name="add_new">+</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>

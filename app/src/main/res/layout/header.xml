@@ -7,7 +7,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/gradient_button" />
+        android:background="@drawable/plus_gradient" />
 
     <TextView
         style="?android:attr/listSeparatorTextViewStyle"
@@ -15,14 +15,14 @@
         android:text="Header"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:background="@drawable/gradient_button"
+        android:background="@drawable/plus_gradient"
         android:textSize="25dp"
         android:textColor="#EEFCFF" />
 
 
     <Button
         android:id="@+id/button11"
-        android:background="@drawable/gradient_button2"
+        android:background="@drawable/gradient_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

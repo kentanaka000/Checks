@@ -41,7 +41,7 @@ public class NewTaskPage extends AppCompatActivity {
             ChecksDbHelper db = new ChecksDbHelper(this);
             task = db.getTask(tableID, rowID);
             name.setText(task.getName());
-            label.setVisibility(View.INVISIBLE);
+            label.setText("Rename your task?");
             update = true;
         }
     }
