@@ -34,17 +34,21 @@ public class MainActivity extends ListActivity {
         items.add(new ListItem("Text 2", "Rabble rabble"));
         items.add(new ListItem("Text 3", "Rabble rabble"));
         items.add(new ListItem("Text 4", "Rabble rabble"));
+        items.add(new NewTask("Add a new task!"));
         items.add(new Header("Header 2"));
         items.add(new ListItem("Text 5", "Rabble rabble"));
         items.add(new ListItem("Text 6", "Rabble rabble"));
         items.add(new ListItem("Text 7", "Rabble rabble"));
         items.add(new ListItem("Text 8", "Rabble rabble"));
+        items.add(new NewTask("Add a new task!"));
+        
 
         ChecksDbHelper db = new ChecksDbHelper(this);
         List<HeaderRow> headers = db.getAllHeaders();
 
         for (int i = 0; i < headers.size(); i++) {
             items.add(new Header(headers.get(i).getName()));
+            headers.get(0).getID();
         }
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
