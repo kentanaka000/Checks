@@ -1,5 +1,6 @@
 package hackprinceton.checks;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.ListActivity;
 import android.app.PendingIntent;
@@ -10,12 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity{
 
     public void redirect(View view) {
         Intent intent = new Intent(this, HeaderSettingsPage.class);
@@ -28,28 +31,52 @@ public class MainActivity extends ListActivity {
 
         setContentView(R.layout.activity_main);
 
+        ListView listView = (ListView) findViewById(R.id.list);
+
         List<Item> items = new ArrayList<Item>();
         items.add(new Header("Header 1"));
-        items.add(new ListItem("Text 1", "Rabble rabble"));
-        items.add(new ListItem("Text 2", "Rabble rabble"));
-        items.add(new ListItem("Text 3", "Rabble rabble"));
-        items.add(new ListItem("Text 4", "Rabble rabble"));
+        items.add(new ListItem("Text 1"));
         items.add(new Header("Header 2"));
-        items.add(new ListItem("Text 5", "Rabble rabble"));
-        items.add(new ListItem("Text 6", "Rabble rabble"));
-        items.add(new ListItem("Text 7", "Rabble rabble"));
-        items.add(new ListItem("Text 8", "Rabble rabble"));
+        items.add(new ListItem("Text 5"));
 
         ChecksDbHelper db = new ChecksDbHelper(this);
         List<HeaderRow> headers = db.getAllHeaders();
 
+        final List<Integer> type = new ArrayList<Integer>();
+        final List<Integer> idList = new ArrayList<Integer>();
+
         for (int i = 0; i < headers.size(); i++) {
             items.add(new Header(headers.get(i).getName()));
+            type.add(0);
+            idList.add(headers.get(i).getID());
+
+            List<TaskRow> tasks = db.getTasks(headers.get(i).getDb());
+            for (int j = 0; j < tasks.size(); j++) {
+                items.add(new ListItem(tasks.get(j).getName()));
+                type.add(1);
+                idList.add(tasks.get(j).getID());
+            }
+
+            type.add(2);
+            idList.add(0);
         }
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
-        setListAdapter(adapter);
+        listView.setAdapter(adapter);
 
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                Log.d("hello", Integer.toString(position));
+                switch(type.get(position)) {
+                    case 0:
+                        Intent intent = new Intent(getBaseContext(), HeaderSettingsPage.class);
+                        intent.putExtra("HEADER_ID", idList.get(position));
+                        startActivity(intent);
+                }
+            }
+        });
 
         /*
         new Thread(new Runnable() {

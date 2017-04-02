@@ -19,12 +19,13 @@
 
         <service
             android:name=".ChecksService"
-            android:label="Checks Service"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:label="Checks Service">
             <intent-filter>
                 <action android:name="hackprinceton.checks.ChecksService" />
-            </intent-filter></service>
+            </intent-filter>
+        </service>
 
         <receiver
             android:name=".receiver.StartChecksServiceAtBootReceiver"
@@ -38,6 +39,7 @@
             android:name=".HeaderSettingsPage"
             android:label="@string/settings"
             android:parentActivityName=".MainActivity">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -6,11 +6,11 @@ package hackprinceton.checks;
 
 public class HeaderRow {
     //private variables
-    int _id;
-    String _name;
-    String _email;
-    int _interval;
-    int _db;
+    private int _id;
+    private String _name;
+    private String _email;
+    private int _interval;
+    private int _db;
 
     // Empty constructor
     public HeaderRow(){
