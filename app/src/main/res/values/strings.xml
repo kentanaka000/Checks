@@ -118,4 +118,5 @@
     <string name="ask_new_task">What new task do you want to add?</string>
     <string name="task">Task</string>
     <string name="delete">Delete</string>
+    <string name="enter_name">What is your full name?</string>
 </resources>

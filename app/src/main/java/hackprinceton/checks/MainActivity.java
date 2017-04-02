@@ -2,12 +2,17 @@ package hackprinceton.checks;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.content.Intent;
 import android.view.View;
@@ -22,6 +27,24 @@ import java.util.List;
 
 public class MainActivity extends Activity{
 
+    protected void onStart()
+    {
+        super.onStart();
+
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.enter_name);
+        dialog.setTitle("Dialog box");
+
+        Button button = (Button) dialog.findViewById(R.id.save_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
     public void redirect(View view) {
         Intent intent = new Intent(this, HeaderSettingsPage.class);
         startActivity(intent);
@@ -76,4 +99,5 @@ public class MainActivity extends Activity{
         Intent intent = new Intent(this, HeaderSettingsPage.class);
         startActivity(intent);
     }
-}
+    }
+
