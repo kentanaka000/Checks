@@ -1,5 +1,6 @@
 package hackprinceton.checks;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,6 +84,17 @@ public class ListItem implements Item {
                     Log.d("new", task.getDays());
                     db.updateTask(table, task);
                 }
+            }
+        });
+
+        text1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(view.getContext(), NewTaskPage.class);
+                intent.putExtra("TABLE_ID", table);
+                intent.putExtra("ROW_ID", id);
+                view.getContext().startActivity(intent);
+                return false;
             }
         });
 
