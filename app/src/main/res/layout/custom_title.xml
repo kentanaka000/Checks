@@ -9,9 +9,18 @@
     android:background="#87ceeb">
 
     <ImageView
-        android:id="@+id/header"
+        android:id="@+id/checkmarkpic"
         android:src="@drawable/checkmark"
         android:layout_width="wrap_content"
         android:layout_height="35dp"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.18"
+        android:text="Checks"
+        android:textColor="#F000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
 </LinearLayout>
