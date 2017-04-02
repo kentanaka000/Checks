@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static android.R.attr.id;
+
 public class MainActivity extends Activity{
 
     public void redirect(View view) {
@@ -42,6 +44,11 @@ public class MainActivity extends Activity{
 
         for (int i = 0; i < headers.size(); i++) {
             items.add(new Header(headers.get(i).getName(), headers.get(i).getID()));
+            if (headers.get(i).getNext() < Calendar.getInstance().getTimeInMillis()) {
+                Intent serviceIntent = new Intent(this, ChecksService.class);
+                serviceIntent.putExtra("HEADER_ID", headers.get(i).getID());
+                startService(serviceIntent);
+            }
 
             List<TaskRow> tasks = db.getTasks(headers.get(i).getDb());
             for (int j = 0; j < tasks.size(); j++) {
@@ -54,22 +61,10 @@ public class MainActivity extends Activity{
         listView.setAdapter(adapter);
 
 
+
+
         /*
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    GMailSender sender = new GMailSender("hackprinceton.checks@gmail.com",
-                            "Dellgrassland113");
-                    sender.sendMail("Hello from JavaMail", "Body from JavaMail",
-                            "hackprinceton.checks@gmail.com", "hackprincton.checks@gmail.com");
-                } catch (Exception e) {
-                    Log.e("SendMail", e.getMessage(), e);
-                }
-            }
-
-        }).start();*/
+        */
     }
 
     public void onAddButtonClick(View v) {

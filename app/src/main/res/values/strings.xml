@@ -1,16 +1,9 @@
 <resources>
     <string-array name="updates_array">
-        <item>Every day</item>
-        <item>Every other day</item>
-        <item>Every three days</item>
         <item>Every Monday</item>
-        <item>Every Tuesday</item>
-        <item>Every Wednesday</item>
-        <item>Every Thursday</item>
-        <item>Every Friday</item>
-        <item>Every Saturday</item>
-        <item>Every Sunday</item>
-        <item>Every 1st of the month</item>
+        <item>Every other Monday</item>
+        <item>Every 3 weeks</item>
+        <item>Every 4 weeks</item>
     </string-array>
     <string name="app_name">Checks</string>
     <string name="settings">Settings</string>

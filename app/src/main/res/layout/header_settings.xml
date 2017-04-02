@@ -78,12 +78,12 @@
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_delete"
         android:background="@drawable/plus_gradient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.01"
-        android:onClick="onSaveClick"
+        android:onClick="onDeleteClick"
         android:text="@string/delete"
         android:textSize="20dp"
         android:textStyle="bold"

@@ -3,6 +3,8 @@ package hackprinceton.checks;
 /**
  * Created by nanxi on 4/1/2017.
  */
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +22,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class HeaderSettingsPage extends AppCompatActivity {
 
@@ -77,6 +82,9 @@ public class HeaderSettingsPage extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         ChecksDbHelper db = new ChecksDbHelper(HeaderSettingsPage.this);
                         db.deleteHeader(header);
+
+                        Intent intent = new Intent(HeaderSettingsPage.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "No!",
@@ -107,8 +115,23 @@ public class HeaderSettingsPage extends AppCompatActivity {
 
 
             ChecksDbHelper db = new ChecksDbHelper(this);
-            db.addHeader(new HeaderRow(name.getText().toString(), email.getText().toString(), staticSpinner.getSelectedItemPosition(), next));
+            Calendar calendar = Calendar.getInstance();
 
+
+            calendar.set(Calendar.DAY_OF_WEEK,2);
+            calendar.set(Calendar.HOUR,9);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+
+            int id = (int) db.addHeader(new HeaderRow(name.getText().toString(), email.getText().toString(), staticSpinner.getSelectedItemPosition(), next, calendar.getTimeInMillis()));
+
+            Intent serviceIntent = new Intent(getBaseContext(), ChecksService.class);
+            serviceIntent.setAction("com.checks.propagate");
+            serviceIntent.putExtra("id", id);
+            PendingIntent pintent = PendingIntent.getService(HeaderSettingsPage.this, 0, serviceIntent, 0);
+            AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 7*staticSpinner.getSelectedItemPosition()*TimeUnit.DAYS.toMillis(1), pintent);
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -11,25 +11,28 @@ public class HeaderRow {
     private String _email;
     private int _interval;
     private int _db;
+    private long _next;
 
     // Empty constructor
     public HeaderRow(){
 
     }
     // constructor
-    public HeaderRow(int id, String name, String email, int interval, int data){
+    public HeaderRow(int id, String name, String email, int interval, int data, long next){
         this._id = id;
         this._name = name;
         this._email = email;
         this._interval = interval;
         this._db = data;
+        this._next = next;
     }
 
-    public HeaderRow(String name, String email, int interval, int data){
+    public HeaderRow(String name, String email, int interval, int data, long next){
         this._name = name;
         this._email = email;
         this._interval = interval;
         this._db = data;
+        this._next = next;
     }
 
     public int getID(){
@@ -51,6 +54,10 @@ public class HeaderRow {
 
     public int getDb(){
         return this._db;
+    }
+
+    public long getNext() {
+        return this._next;
     }
 
 
@@ -75,4 +82,7 @@ public class HeaderRow {
         this._db = db;
     }
 
+    public void setNext(long next) {
+        this._next = next;
+    }
 }

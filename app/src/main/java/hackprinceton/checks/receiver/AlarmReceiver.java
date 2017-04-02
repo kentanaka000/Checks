@@ -11,10 +11,10 @@ import hackprinceton.checks.ChecksService;
 import hackprinceton.checks.HeaderRow;
 
 /**
- * Created by Kentaro on 4/1/2017.
+ * Created by Kentaro on 4/2/2017.
  */
 
-public class StartChecksServiceAtBootReceiver extends BroadcastReceiver {
+public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {

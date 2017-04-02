@@ -24,7 +24,7 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
     private String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + "("
             + COLUMN_NAME_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME_NAME + " TEXT,"
             + COLUMN_NAME_EMAIL + " TEXT," + COLUMN_NAME_INTERVAL + " INTEGER," +
-            COLUMN_NAME_DATA + " INTEGER" + ")";
+            COLUMN_NAME_DATA + " INTEGER," + COLUMN_NAME_NEXT + " INTEGER"+ ")";
 
     private String SQL_CREATE_TASK = "CREATE TABLE " + TaskContract.TaskEntry.TABLE_NAME;
     private String SQL_CREATE_TASK_2 = "("
@@ -35,6 +35,9 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+    private static final String SQL_DELETE_TASKS =
+            "DROP TABLE IF EXISTS " + TaskContract.TaskEntry.TABLE_NAME;
 
     public ChecksDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -61,7 +64,7 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
      */
 
     // Adding new contact
-    void addHeader(HeaderRow header) {
+    long addHeader(HeaderRow header) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -69,11 +72,13 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME_EMAIL, header.getEmail());
         values.put(COLUMN_NAME_INTERVAL, header.getInterval());
         values.put(COLUMN_NAME_DATA, header.getDb());
+        values.put(COLUMN_NAME_NEXT, header.getNext());
 
         // Inserting Row
-        db.insert(TABLE_NAME, null, values);
+        long a = db.insert(TABLE_NAME, null, values);
         db.execSQL(SQL_CREATE_TASK + Integer.toString(header.getDb()) + SQL_CREATE_TASK_2);
         db.close(); // Closing database connection
+        return a;
     }
 
     void addTask(int table, TaskRow task) {
@@ -133,7 +138,7 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_NAME_ID,
-                        COLUMN_NAME_NAME, COLUMN_NAME_EMAIL, COLUMN_NAME_INTERVAL, COLUMN_NAME_DATA },
+                        COLUMN_NAME_NAME, COLUMN_NAME_EMAIL, COLUMN_NAME_INTERVAL, COLUMN_NAME_DATA, COLUMN_NAME_NEXT },
                 COLUMN_NAME_ID + "=?",new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -144,6 +149,7 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
         row.setEmail(cursor.getString(2));
         row.setInterval(Integer.parseInt(cursor.getString(3)));
         row.setDb(Integer.parseInt(cursor.getString(4)));
+        row.setNext(Long.parseLong(cursor.getString(5)));
 
         // return contact
         return row;
@@ -167,6 +173,7 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
                 row.setEmail(cursor.getString(2));
                 row.setInterval(Integer.parseInt(cursor.getString(3)));
                 row.setDb(Integer.parseInt(cursor.getString(4)));
+                row.setNext(Long.parseLong(cursor.getString(5)));
 
                 headerList.add(row);
             } while (cursor.moveToNext());
@@ -183,6 +190,7 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME_EMAIL, header.getEmail());
         values.put(COLUMN_NAME_INTERVAL, header.getInterval());
         values.put(COLUMN_NAME_DATA, header.getDb());
+        values.put(COLUMN_NAME_NEXT, header.getNext());
 
         // updating row
         return db.update(TABLE_NAME, values, COLUMN_NAME_ID + " = ?",
@@ -204,6 +212,7 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
 
     public void deleteHeader(HeaderRow headerRow) {
         SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(SQL_DELETE_TASKS + Integer.toString(headerRow.getDb()));
         db.delete(TABLE_NAME, COLUMN_NAME_ID + " = ?",
                 new String[] { String.valueOf(headerRow.getID()) });
         db.close();
@@ -217,39 +226,5 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
-    /*
-    // Updating single contact
-    public int updateContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName());
-        values.put(KEY_PH_NO, contact.getPhoneNumber());
-
-        // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
-    }
-
-    // Deleting single contact
-    public void deleteContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
-        db.close();
-    }
-
-
-    // Getting contacts Count
-    public int getContactsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
-
-        // return count
-        return cursor.getCount();
-    }*/
 
 }

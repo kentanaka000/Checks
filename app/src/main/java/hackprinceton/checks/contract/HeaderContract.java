@@ -17,5 +17,6 @@ public class HeaderContract {
         public static final String COLUMN_NAME_EMAIL = "email";
         public static final String COLUMN_NAME_INTERVAL = "interval";
         public static final String COLUMN_NAME_DATA = "data";
+        public static final String COLUMN_NAME_NEXT = "next";
     }
 }

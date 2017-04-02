@@ -44,9 +44,19 @@ public class NewTask implements Item {
                 view.getContext().startActivity(intent);
             }
         });
+        text1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), NewTaskPage.class);
+                intent.putExtra("TABLE_ID", id);
+                view.getContext().startActivity(intent);
+            }
+        });
 
         return view;
     }
+
+
 
 
 }
