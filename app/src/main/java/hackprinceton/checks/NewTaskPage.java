@@ -68,6 +68,9 @@ public class NewTaskPage extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         ChecksDbHelper db = new ChecksDbHelper(NewTaskPage.this);
                         db.deleteTask(tableID, task);
+
+                        Intent intent = new Intent(NewTaskPage.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "No!",

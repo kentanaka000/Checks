@@ -40,10 +40,9 @@ public class ListItem implements Item {
         } else {
             view = convertView;
         }
-        TextView text1 = (TextView) view.findViewById(R.id.list_content1);
-        text1.setText(str1);
 
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox2);
+        checkBox.setText(str1);
 
         ChecksDbHelper db = new ChecksDbHelper(view.getContext());
         TaskRow task = db.getTask(table, id);
@@ -87,7 +86,7 @@ public class ListItem implements Item {
             }
         });
 
-        text1.setOnLongClickListener(new View.OnLongClickListener() {
+        checkBox.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 Intent intent = new Intent(view.getContext(), NewTaskPage.class);
