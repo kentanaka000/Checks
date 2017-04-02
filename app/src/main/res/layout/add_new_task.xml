@@ -11,7 +11,6 @@
         android:layout_height="match_parent"
         android:layout_weight="0.30"
         android:text="@string/add_new"
-        android:onClick="redirect_task"
         android:textSize="17sp" />
 
     <TextView

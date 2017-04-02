@@ -47,7 +47,7 @@ public class MainActivity extends Activity{
             for (int j = 0; j < tasks.size(); j++) {
                 items.add(new ListItem(tasks.get(j).getName(), headers.get(i).getDb(), tasks.get(j).getID()));
             }
-            items.add(new NewTask());
+            items.add(new NewTask(headers.get(i).getDb()));
         }
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
