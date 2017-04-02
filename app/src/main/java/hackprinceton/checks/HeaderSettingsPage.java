@@ -4,8 +4,10 @@ package hackprinceton.checks;
  * Created by nanxi on 4/1/2017.
  */
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -65,6 +67,25 @@ public class HeaderSettingsPage extends AppCompatActivity {
             update = false;
         }
     };
+
+    public void onDeleteClick(View v) {
+        AlertDialog alertDialog = new AlertDialog.Builder(HeaderSettingsPage.this).create();
+        alertDialog.setTitle("WAIT!");
+        alertDialog.setMessage("Are you sure you want to delete this?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Yes!",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "No!",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
 
     public void onSaveClick(View v) {
         if (update) {
