@@ -17,13 +17,13 @@ import static hackprinceton.checks.contract.HeaderContract.HeaderEntry.*;
  * Created by Kentaro on 4/1/2017.
  */
 
-public class HeaderDbHelper extends SQLiteOpenHelper {
+public class ChecksDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "FeedReader.db";
 
     private String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + "("
             + COLUMN_NAME_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME_NAME + " TEXT,"
-            + COLUMN_NAME_EMAIL + " TEXT" + COLUMN_NAME_INTERVAL + " INTEGER," +
+            + COLUMN_NAME_EMAIL + " TEXT," + COLUMN_NAME_INTERVAL + " INTEGER," +
             COLUMN_NAME_DATA + " INTEGER" + ")";
 
     private String SQL_CREATE_TASK = "CREATE TABLE " + TaskContract.TaskEntry.TABLE_NAME;
@@ -36,7 +36,7 @@ public class HeaderDbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-    public HeaderDbHelper(Context context) {
+    public ChecksDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -77,7 +77,7 @@ public class HeaderDbHelper extends SQLiteOpenHelper {
     }
 
     // Getting All Contacts
-    public List<HeaderRow> getAllContacts() {
+    public List<HeaderRow> getAllHeaders() {
         List<HeaderRow> headerList = new ArrayList<HeaderRow>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;

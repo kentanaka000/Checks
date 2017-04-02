@@ -69,5 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.03"
+        android:onClick="onSaveClick"
         android:text="@string/save" />
 </LinearLayout>

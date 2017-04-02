@@ -25,6 +25,13 @@ public class HeaderRow {
         this._db = data;
     }
 
+    public HeaderRow(String name, String email, int interval, int data){
+        this._name = name;
+        this._email = email;
+        this._interval = interval;
+        this._db = data;
+    }
+
     public int getID(){
         return this._id;
     }

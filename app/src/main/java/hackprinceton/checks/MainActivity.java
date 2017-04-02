@@ -17,8 +17,7 @@ import java.util.List;
 
 public class MainActivity extends ListActivity {
 
-    public void redirect(View view)
-    {
+    public void redirect(View view) {
         Intent intent = new Intent(this, HeaderSettingsPage.class);
         startActivity(intent);
     }
@@ -40,6 +39,13 @@ public class MainActivity extends ListActivity {
         items.add(new ListItem("Text 6", "Rabble rabble"));
         items.add(new ListItem("Text 7", "Rabble rabble"));
         items.add(new ListItem("Text 8", "Rabble rabble"));
+
+        ChecksDbHelper db = new ChecksDbHelper(this);
+        List<HeaderRow> headers = db.getAllHeaders();
+
+        for (int i = 0; i < headers.size(); i++) {
+            items.add(new Header(headers.get(i).getName()));
+        }
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
         setListAdapter(adapter);
@@ -64,8 +70,7 @@ public class MainActivity extends ListActivity {
     }
 
     public void onAddButtonClick(View v) {
-
+        Intent intent = new Intent(this, HeaderSettingsPage.class);
+        startActivity(intent);
     }
 }
-        }
-    }
