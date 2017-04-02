@@ -1,15 +1,20 @@
 package hackprinceton.checks;
 
+import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.ListActivity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.content.Intent;
 import android.view.View;
+import android.view.Window;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,10 +27,18 @@ public class MainActivity extends ListActivity {
         startActivity(intent);
     }
 
+    public void redirect_task(View view) {
+        Intent intent = new Intent(this, NewTaskPage.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ActionBar bar = getActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#F00")));
+        
         setContentView(R.layout.activity_main);
 
         List<Item> items = new ArrayList<Item>();
@@ -41,7 +54,7 @@ public class MainActivity extends ListActivity {
         items.add(new ListItem("Text 7", "Rabble rabble"));
         items.add(new ListItem("Text 8", "Rabble rabble"));
         items.add(new NewTask("Add a new task!"));
-        
+
 
         ChecksDbHelper db = new ChecksDbHelper(this);
         List<HeaderRow> headers = db.getAllHeaders();
@@ -75,6 +88,12 @@ public class MainActivity extends ListActivity {
 
     public void onAddButtonClick(View v) {
         Intent intent = new Intent(this, HeaderSettingsPage.class);
+        startActivity(intent);
+
+    }
+
+    public void addTaskClick(View v) {
+        Intent intent = new Intent(this, NewTaskPage.class);
         startActivity(intent);
     }
 }

@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:layout_weight="0.30"
         android:text="@string/add_new"
-        android:textSize="20sp" />
+        android:onClick="redirect_task"
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/new_task_content"
@@ -19,14 +20,13 @@
         android:layout_height="match_parent"
         android:layout_margin="5dip"
         android:clickable="false"
-        android:gravity="center"
+        android:gravity="left"
         android:longClickable="false"
         android:paddingBottom="1dip"
         android:paddingTop="1dip"
         android:text="sample"
         android:textColor="#F000"
         android:textSize="17dip"
-        android:textStyle="bold"
         android:layout_weight="6.82" />
 
 </LinearLayout>
