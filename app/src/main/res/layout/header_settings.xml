@@ -65,7 +65,7 @@
         android:layout_marginTop="20dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_save"
         android:background="@drawable/plus_gradient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.01"
-        android:onClick="onDeleteClick"
+        android:onClick="onSaveClick"
         android:text="@string/delete"
         android:textSize="20dp"
         android:textStyle="bold"

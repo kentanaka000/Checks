@@ -61,7 +61,11 @@ public class HeaderSettingsPage extends AppCompatActivity {
             staticSpinner.setSelection(header.getInterval());
             update = true;
         }
-        else update = false;
+        else {
+            Button delete = (Button) findViewById(R.id.button_delete);
+            delete.setVisibility(View.INVISIBLE);
+            update = false;
+        }
     };
 
     public void onDeleteClick(View v) {
