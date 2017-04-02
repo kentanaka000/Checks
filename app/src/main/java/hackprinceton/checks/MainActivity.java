@@ -11,14 +11,20 @@ import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
+    public void redirect(View view) {
+        Intent intent = new Intent(this, HeaderSettingsPage.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +35,19 @@ public class MainActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.list);
 
         List<Item> items = new ArrayList<Item>();
-        items.add(new Header("Header 1"));
-        items.add(new ListItem("Text 1"));
-        items.add(new NewTask());
-        items.add(new Header("Header 2"));
-        items.add(new ListItem("Text 5"));
-        items.add(new NewTask());
-        
 
         ChecksDbHelper db = new ChecksDbHelper(this);
         List<HeaderRow> headers = db.getAllHeaders();
 
+
         for (int i = 0; i < headers.size(); i++) {
-            items.add(new Header(headers.get(i).getName()));
-            headers.get(0).getID();
+            items.add(new Header(headers.get(i).getName(), headers.get(i).getID()));
+
+            List<TaskRow> tasks = db.getTasks(headers.get(i).getDb());
+            for (int j = 0; j < tasks.size(); j++) {
+                items.add(new ListItem(tasks.get(j).getName(), headers.get(i).getDb(), tasks.get(j).getID()));
+            }
+            items.add(new NewTask());
         }
 
         ChecklistAdapter adapter = new ChecklistAdapter(this, items);
