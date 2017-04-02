@@ -1,5 +1,6 @@
 package hackprinceton.checks;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -49,20 +50,20 @@ public class ListItem implements Item {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String[] separated = convertStringToArray(task.getDays());
         String formattedDate = df.format(c.getTime());
-        if (separated[separated.length - 1] != formattedDate) {
+        Log.d("current", formattedDate);
+        Log.d("prev", separated[separated.length - 1]);
+        if (!separated[separated.length - 1].equals(formattedDate)) {
             checkBox.setChecked(false);
         }
         else {
             checkBox.setChecked(true);
         }
 
-        task.setDays(task.getDays() + strSeparator + formattedDate);
-        db.updateTask(table, task);
-
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
                 if (isChecked) {
                     ChecksDbHelper db = new ChecksDbHelper(view.getContext());
                     TaskRow task = db.getTask(table, id);
@@ -76,8 +77,10 @@ public class ListItem implements Item {
                 else {
                     ChecksDbHelper db = new ChecksDbHelper(view.getContext());
                     TaskRow task = db.getTask(table, id);
+                    Log.d("before", task.getDays());
 
                     task.setDays(task.getDays().substring(0, task.getDays().length() - 15));
+                    Log.d("new", task.getDays());
                     db.updateTask(table, task);
                 }
             }
