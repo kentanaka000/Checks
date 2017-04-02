@@ -52,7 +52,7 @@ public class MainActivity extends Activity{
 
         for (int i = 0; i < headers.size(); i++) {
             items.add(new Header(headers.get(i).getName(), headers.get(i).getID()));
-            if (headers.get(i).getNext() < Calendar.getInstance().getTimeInMillis()) {
+            if (headers.get(i).getNext() > Calendar.getInstance().getTimeInMillis()) {
                 Intent serviceIntent = new Intent(this, ChecksService.class);
                 serviceIntent.putExtra("HEADER_ID", headers.get(i).getID());
                 startService(serviceIntent);

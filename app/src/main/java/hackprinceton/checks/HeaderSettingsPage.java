@@ -131,7 +131,7 @@ public class HeaderSettingsPage extends AppCompatActivity {
             serviceIntent.putExtra("id", id);
             PendingIntent pintent = PendingIntent.getService(HeaderSettingsPage.this, 0, serviceIntent, 0);
             AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-            alarm.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 7*staticSpinner.getSelectedItemPosition()*TimeUnit.DAYS.toMillis(1), pintent);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 7*(1 + staticSpinner.getSelectedItemPosition())*TimeUnit.DAYS.toMillis(1), pintent);
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

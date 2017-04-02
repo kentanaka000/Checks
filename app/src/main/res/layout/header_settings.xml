@@ -11,16 +11,6 @@
     android:background="#EEFCFF">
 
     <TextView
-        android:id="@+id/settingsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.03"
-        android:paddingLeft="10dp"
-        android:text="Checks"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#F000" />
-
-    <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

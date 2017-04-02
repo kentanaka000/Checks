@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 /**
  * Created by nanxi on 4/1/2017.
@@ -20,12 +21,14 @@ public class NewTaskPage extends AppCompatActivity {
     EditText name;
     boolean update;
     TaskRow task;
+    TextView label;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_task_page);
 
         name = (EditText) findViewById(R.id.editText);
+        label = (TextView) findViewById(R.id.textView2);
 
         tableID = getIntent().getIntExtra("TABLE_ID", -1);
         rowID = getIntent().getIntExtra("ROW_ID", -1);
@@ -38,6 +41,7 @@ public class NewTaskPage extends AppCompatActivity {
             ChecksDbHelper db = new ChecksDbHelper(this);
             task = db.getTask(tableID, rowID);
             name.setText(task.getName());
+            label.setVisibility(View.INVISIBLE);
             update = true;
         }
     }
