@@ -7,16 +7,17 @@
     android:baselineAligned="true"
     android:orientation="vertical"
     tools:layout_centerInParent="true"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#EEFCFF">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_weight="0.05"
         android:gravity="center"
         android:text="@string/group"
-        android:textColor="#000"
+        android:textColor="#0000CD"
         android:textSize="20dip"
         android:textStyle="bold" />
 
@@ -31,10 +32,10 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_weight="0.05"
         android:gravity="center"
         android:text="@string/email_addresses"
-        android:textColor="#000"
+        android:textColor="#0000CD"
         android:textSize="20dip"
         android:textStyle="bold" />
 
@@ -49,12 +50,12 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
-        android:text="@string/updates"
+        android:layout_weight="0.05"
         android:gravity="center"
-        android:textColor="#000"
+        android:text="@string/updates"
+        android:textColor="#0000CD"
         android:textSize="20dip"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/static_spinner"
@@ -65,19 +66,27 @@
 
     <Button
         android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@drawable/plus_gradient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_weight="0.01"
         android:onClick="onSaveClick"
-        android:text="@string/save" />
+        android:text="@string/save"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#EEFCFF"
+        />
 
     <Button
-        android:id="@+id/button1"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/button"
+        android:background="@drawable/plus_gradient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_weight="0.01"
         android:onClick="onSaveClick"
-        android:text="@string/delete" />
+        android:text="@string/delete"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#EEFCFF"
+        />
 </LinearLayout>

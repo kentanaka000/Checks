@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:layout_weight="0.30"
         android:text="@string/add_new"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        android:clickable="false" />
 
     <TextView
         android:id="@+id/new_task_content"
@@ -26,6 +27,7 @@
         android:text="sample"
         android:textColor="#F000"
         android:textSize="17dip"
+        android:textStyle="bold"
         android:layout_weight="6.82" />
 
 </LinearLayout>
