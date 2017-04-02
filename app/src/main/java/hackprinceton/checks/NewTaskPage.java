@@ -19,7 +19,7 @@ public class NewTaskPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_task_page);
 
-        tableID = getIntent().getIntExtra("HEADER_ID", -1);
+        tableID = getIntent().getIntExtra("TABLE_ID", -1);
         name = (EditText) findViewById(R.id.editText);
     }
 
@@ -28,5 +28,7 @@ public class NewTaskPage extends AppCompatActivity {
         ChecksDbHelper db = new ChecksDbHelper(this);
         db.addTask(tableID, new TaskRow(name.getText().toString(), ""));
 
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
