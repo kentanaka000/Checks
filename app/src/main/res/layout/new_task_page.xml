@@ -44,5 +44,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.03"
         android:onClick="onDeleteClick"
-        android:text="@string/save" />
+        android:text="@string/delete" />
 </LinearLayout>

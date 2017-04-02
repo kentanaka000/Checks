@@ -1,7 +1,9 @@
 package hackprinceton.checks;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -56,5 +58,24 @@ public class NewTaskPage extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+    }
+    public void onDeleteClick(View v) {
+        AlertDialog alertDialog = new AlertDialog.Builder(NewTaskPage.this).create();
+        alertDialog.setTitle("WAIT!");
+        alertDialog.setMessage("Are you sure you want to delete this?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Yes!",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ChecksDbHelper db = new ChecksDbHelper(NewTaskPage.this);
+                        db.deleteTask(tableID, task);
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "No!",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

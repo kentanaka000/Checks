@@ -75,7 +75,8 @@ public class HeaderSettingsPage extends AppCompatActivity {
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Yes!",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                        ChecksDbHelper db = new ChecksDbHelper(HeaderSettingsPage.this);
+                        db.deleteHeader(header);
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "No!",

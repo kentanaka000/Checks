@@ -202,6 +202,21 @@ public class ChecksDbHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(task.getID()) });
     }
 
+    public void deleteHeader(HeaderRow headerRow) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COLUMN_NAME_ID + " = ?",
+                new String[] { String.valueOf(headerRow.getID()) });
+        db.close();
+    }
+
+
+    public void deleteTask(int table, TaskRow task) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TaskContract.TaskEntry.TABLE_NAME + Integer.toString(table),
+                TaskContract.TaskEntry.COLUMN_NAME_ID + " = ?", new String[] { String.valueOf(task.getID()) });
+        db.close();
+    }
+
 
     /*
     // Updating single contact
