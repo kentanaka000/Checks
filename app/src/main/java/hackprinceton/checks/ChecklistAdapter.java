@@ -16,7 +16,7 @@ public class ChecklistAdapter extends ArrayAdapter<Item>{
     private LayoutInflater mInflater;
 
     public enum RowType {
-        LIST_ITEM, HEADER_ITEM
+        LIST_ITEM, HEADER_ITEM, NEWTASK_ITEM
     }
 
     public ChecklistAdapter(Context context, List<Item> items) {
@@ -36,6 +36,7 @@ public class ChecklistAdapter extends ArrayAdapter<Item>{
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_SEPARATOR = 1;
+    private static final int TYPE_NEWTASK = 2;
 
     public View getView(int position, View convertView, ViewGroup parent)  {
         ViewHolder holder = null;
@@ -50,6 +51,10 @@ public class ChecklistAdapter extends ArrayAdapter<Item>{
                     break;
                 case TYPE_SEPARATOR:
                     convertView = mInflater.inflate(R.layout.header, null);
+                    holder.View=getItem(position).getView(mInflater, convertView);
+                    break;
+                case TYPE_NEWTASK:
+                    convertView = mInflater.inflate(R.layout.add_new_task, null);
                     holder.View=getItem(position).getView(mInflater, convertView);
                     break;
             }
