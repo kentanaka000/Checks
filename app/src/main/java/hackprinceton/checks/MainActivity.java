@@ -34,10 +34,6 @@ public class MainActivity extends Activity{
         ListView listView = (ListView) findViewById(R.id.list);
 
         List<Item> items = new ArrayList<Item>();
-        items.add(new Header("Header 1"));
-        items.add(new ListItem("Text 1"));
-        items.add(new Header("Header 2"));
-        items.add(new ListItem("Text 5"));
 
         ChecksDbHelper db = new ChecksDbHelper(this);
         List<HeaderRow> headers = db.getAllHeaders();
@@ -56,7 +52,7 @@ public class MainActivity extends Activity{
                 type.add(1);
                 idList.add(tasks.get(j).getID());
             }
-
+            items.add(new NewTask());
             type.add(2);
             idList.add(0);
         }
@@ -69,6 +65,7 @@ public class MainActivity extends Activity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 Log.d("hello", Integer.toString(position));
+
                 switch(type.get(position)) {
                     case 0:
                         Intent intent = new Intent(getBaseContext(), HeaderSettingsPage.class);

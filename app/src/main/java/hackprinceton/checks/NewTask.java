@@ -9,9 +9,9 @@ import android.widget.TextView;
  */
 
 public class NewTask implements Item {
-    private final String         str1;
-    public NewTask(String text1) {
-    this.str1 = text1;
+    private final String         str1 = "Add a new task!";
+    public NewTask() {
+
 }
 
         @Override
