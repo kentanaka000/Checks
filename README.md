@@ -2,9 +2,6 @@
 
 HackPrinceton Project
 
-References:
-How to send an email with JavaMail API in Android? by ssaurel
-http://www.ssaurel.com/blog/how-to-send-an-email-with-javamail-api-in-android/
+A To-Do List App that automatically sends e-mail updates at specified intervals, which holds the user accountable/keeps them connected to people they care about.
 
-Android ListView Headers by Antew
-http://stackoverflow.com/questions/13590627/android-listview-headers
+For example, someone could keep their mother up to date about whether they are going to bed on time, or a physical therapist could be kept up to date about whether their patient is following their program successfully. 
